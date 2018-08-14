@@ -1,27 +1,28 @@
-# Order Notifications
+# SMS Order Notifications
+### ⏱ 15 min build time
 
-⏱ 15 min build time
+## Why build SMS order notications? 
 
-Have you ever ordered food for home delivery on the phone, via the web or using an app? You might have found yourself wondering whether your order was received correctly and how long it takes until it is delivered!
+Have you ever ordered home delivery to find yourself wondering whether your order was received correctly and how long it'll take to arrive? Some experiences are seamless and others... not so much. 
 
-For on-demand industries such as food delivery, ridesharing and logistics, excellent customer service during the ordering process is essential. One easy way to stand out from the crowd is proactive communication that keeps customers in the loop about the current status of their orders. Whether your customer is waiting for a package delivery or growing "hangry" (i.e. Hungry + Angry) awaiting their food delivery, sending timely ETA notifications via SMS is a great strategy to create a seamless user experience. The main benefits are that it's instant and works with almost every phone, independently of where the order was taken. Plus, it's already common to collect phone numbers as part of the order so it's easy to get customers on board with this.
+For on-demand industries such as food delivery, ridesharing and logistics, excellent customer service during the ordering process is essential. One easy way to stand out from the crowd is providing proactive communication to keep your customers in the loop about the status of their orders. Irresepective of whether your customer is waiting for a package delivery or growing "hangry" (i.e. Hungry + Angry) awaiting their food delivery, sending timely SMS order notifications is a great strategy to create a seamless user experience.
 
-Our SMS Messaging API provides an easy way to fully automate and integrate the process into order handling software. Your busy employees can trigger the notification with the push of a single button. Hangriness circumvented and user experience boosted, just like that!
+The [MessageBird SMS Messaging API](https://developers.messagebird.com/docs/sms-messaging) provides an easy way to fully automate and integrate a notifications application into your order handling software. Busy employees can trigger the notifications application with the push of a single button - no more confused *hangry* customers and a best-in-class user experience, just like that!
 
 ## Getting Started
 
-This guide will demonstrate a running application in PHP. The application is a prototype for an order management system deployed by a fictitious food delivery company called Birdie NomNom Foods.
+In this MessageBird Developer Guide, we'll show you how to build a runnable Order Notifications application in Node.js. The application is a prototype order management system deployed by our fictitious food delivery company, *Birdie NomNom Foods*.
 
-Birdie NomNom Foods has implemented the following workflow:
+Birdie NomNom Foods have set up the following workflow:
 
 - New incoming orders are in a _pending_ state.
 - Once the kitchen starts preparing an order, it moves to the _confirmed_ state. A message is sent to the customer to inform them about this.
 - When the food is ready and handed over to the delivery driver, staff marks the order _delivered._ A message is sent to the customer to let them know it will arrive momentarily.
-- **Optional:** If preparation takes longer than expected, it can be moved to a _delayed_ state. A message is sent to the customer asking them to hang on just a little while longer. Thanks to this, Birdie NomNom Foods saves time spent answering _"Where's my order?"_ calls.
+- If preparation takes longer than expected, it can be moved to a _delayed_ state. A message is sent to the customer asking them to hang on just a little while longer. Thanks to this, Birdie NomNom Foods saves time spent answering _"Where's my order?"_ calls.
 
 To run the sample application, you need to have PHP installed on your machine. If you're using a Mac, PHP is already installed. For Windows, you can [get it from windows.php.net](https://windows.php.net/download/). Linux users, please check your system's default package manager. You also need Composer, which is available from [getcomposer.org](https://getcomposer.org/download/), to install the [MessageBird SDK for PHP](https://github.com/messagebird/php-rest-api) and other dependencies.
 
-Download the sample application [by cloning the GitHub repository](https://github.com/messagebirdguides/notifications-guide-php) or retrieving and extracting the ZIP file.
+Download the sample application by cloning the [MessageBird Developers Guide GitHub repository](https://github.com/messagebirdguides/notifications-guide-php) or retrieving and extracting the ZIP file.
 
 Then, open a console pointed at the directory into which you've stored the sample application and run the following command:
 
@@ -30,6 +31,14 @@ composer install
 ````
 
 Apart from the MessageBird SDK, Composer will install the [Slim framework](https://packagist.org/packages/slim/slim), the [Twig templating engine](https://packagist.org/packages/slim/twig-view), and the [Dotenv configuration library](https://packagist.org/packages/vlucas/phpdotenv). These libraries add some structure to the project while keeping the sample application straightforward to understand without the overhead of a full-scale web framework.
+
+## Create your API Key 🔑
+
+To enable the MessageBird SDK, we need to provide an access key for the API. MessageBird provides keys in _live_ and _test_ modes. To get this application running, we will need to create and use a live API access key. Read more about the difference between test and live API keys [here] (https://support.messagebird.com/hc/en-us/articles/360000670709-What-is-the-difference-between-a-live-key-and-a-test-key-).
+
+Let's create your live API access key. First, go to the [MessageBird Dashboard](https://dashboard.messagebird.com/en/user/index); if you have already created an API key it will be shown right there. If you do not see any key on the dashboard or if you're unsure whether this key is in _live_ mode, go to the _Developers_ section and open the [API access (REST) tab](https://dashboard.messagebird.com/en/developers/access). Here, you can create new API keys and manage your existing ones.
+
+If you are having any issues creating your API key, please reach out to our Customer Support team at support@messagebird.com.
 
 ## Configuring the MessageBird SDK
 
@@ -167,7 +176,7 @@ Now we can send the prepared object. As the MessageBird SDK throws exceptions fo
         // Send the message through MessageBird's API
         try {
             $this->messagebird->messages->create($message);
-
+            
             // Request was successful, return to previous view
             return $response->withRedirect('/', 301);
 
@@ -194,4 +203,8 @@ Click on one of the buttons in the _Action_ column to trigger a status change an
 
 You now have a running SMS Notifications application!
 
-You can now use the flow, code snippets and UI examples from this tutorial as an inspiration to build your own notification system.
+You can now use the flow, code snippets and UI examples from this tutorial as an inspiration to build your own SMS Notifications system. Don't forget to download the code from the [MessageBird Developer Guides GitHub repository](https://github.com/messagebirdguides/notifications-guide-php).
+
+## Next steps
+
+Want to build something similar but not quite sure how to get started? Please feel free to let us know at support@messagebird.com, we'd love to help!
